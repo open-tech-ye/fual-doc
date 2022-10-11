@@ -1,0 +1,193 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-10-11 19:50:07.553719",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "time_section",
+  "standard_time_of_departure_std",
+  "standard_time_of_arrival_sta",
+  "planned_taxi_time_p_taxit",
+  "planned_trip_time_p_tript",
+  "planned_block_time_p_blkt",
+  "fuel_section",
+  "planned_block_fuel_p_blkf",
+  "planned_taxi_fuel_p_taxif",
+  "planned_takeoff_fuel_p_tof",
+  "planned_trip_fuel_p_tripf",
+  "weight_section",
+  "planned_dry_operating_weight_p_dow",
+  "planned_payload_p_pld",
+  "maximum_zero_fuel_weight_mzfw",
+  "zero_fuel_weight_p_zfw",
+  "maximum_takeoff_weight_mtow",
+  "takeoff_weight_p_tow",
+  "maximum_landing_weight_structure_mlw",
+  "landing_weight_p_lw",
+  "planned_destination_alternate_p_altn",
+  "nearest_alternate_n_altn",
+  "planned_enroute_alternate_p_era",
+  "other_section",
+  "addition",
+  "flight"
+ ],
+ "fields": [
+  {
+   "fieldname": "standard_time_of_departure_std",
+   "fieldtype": "Data",
+   "label": "Standard Time of Departure STD"
+  },
+  {
+   "fieldname": "standard_time_of_arrival_sta",
+   "fieldtype": "Data",
+   "label": "Standard Time of Arrival STA"
+  },
+  {
+   "fieldname": "planned_taxi_time_p_taxit",
+   "fieldtype": "Data",
+   "label": "Planned Taxi Time P TaxiT"
+  },
+  {
+   "fieldname": "planned_trip_time_p_tript",
+   "fieldtype": "Data",
+   "label": "Planned Trip Time P TripT"
+  },
+  {
+   "description": "which is STA minus STD.",
+   "fieldname": "planned_block_time_p_blkt",
+   "fieldtype": "Data",
+   "label": "Planned Block Time P BlkT"
+  },
+  {
+   "fieldname": "fuel_section",
+   "fieldtype": "Section Break",
+   "label": "Fuel"
+  },
+  {
+   "fieldname": "planned_block_fuel_p_blkf",
+   "fieldtype": "Data",
+   "label": "Planned Block Fuel P BlkF"
+  },
+  {
+   "fieldname": "planned_taxi_fuel_p_taxif",
+   "fieldtype": "Data",
+   "label": "Planned Taxi Fuel P TaxiF"
+  },
+  {
+   "fieldname": "planned_takeoff_fuel_p_tof",
+   "fieldtype": "Data",
+   "label": "Planned TakeOff Fuel P T/OF"
+  },
+  {
+   "fieldname": "planned_trip_fuel_p_tripf",
+   "fieldtype": "Data",
+   "label": "planned Trip Fuel P TripF"
+  },
+  {
+   "fieldname": "time_section",
+   "fieldtype": "Section Break",
+   "label": "Time"
+  },
+  {
+   "fieldname": "weight_section",
+   "fieldtype": "Section Break",
+   "label": "Weight"
+  },
+  {
+   "fieldname": "planned_dry_operating_weight_p_dow",
+   "fieldtype": "Data",
+   "label": "Planned Dry Operating Weight P DOW"
+  },
+  {
+   "fieldname": "planned_payload_p_pld",
+   "fieldtype": "Data",
+   "label": "Planned PayLoad P PLD"
+  },
+  {
+   "fieldname": "maximum_zero_fuel_weight_mzfw",
+   "fieldtype": "Data",
+   "label": "Maximum Zero Fuel Weight MZFW"
+  },
+  {
+   "fieldname": "zero_fuel_weight_p_zfw",
+   "fieldtype": "Data",
+   "label": " Zero Fuel Weight P ZFW"
+  },
+  {
+   "fieldname": "maximum_takeoff_weight_mtow",
+   "fieldtype": "Data",
+   "label": "Maximum TakeOff Weight MTOW"
+  },
+  {
+   "fieldname": "takeoff_weight_p_tow",
+   "fieldtype": "Data",
+   "label": "TakeOff Weight P TOW"
+  },
+  {
+   "fieldname": "maximum_landing_weight_structure_mlw",
+   "fieldtype": "Data",
+   "label": "Maximum Landing Weight Structure MLW"
+  },
+  {
+   "fieldname": "landing_weight_p_lw",
+   "fieldtype": "Data",
+   "label": "Landing Weight P LW"
+  },
+  {
+   "fieldname": "planned_destination_alternate_p_altn",
+   "fieldtype": "Data",
+   "label": "Planned Destination Alternate P ALTN"
+  },
+  {
+   "fieldname": "nearest_alternate_n_altn",
+   "fieldtype": "Data",
+   "label": "Nearest Alternate N ALTN"
+  },
+  {
+   "fieldname": "planned_enroute_alternate_p_era",
+   "fieldtype": "Data",
+   "label": "Planned Enroute Alternate P ERA"
+  },
+  {
+   "fieldname": "other_section",
+   "fieldtype": "Section Break",
+   "label": "Other"
+  },
+  {
+   "fieldname": "addition",
+   "fieldtype": "Code",
+   "label": "Addition"
+  },
+  {
+   "fieldname": "flight",
+   "fieldtype": "Link",
+   "label": "Flight",
+   "options": "Flight"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-10-11 21:42:07.245411",
+ "modified_by": "Administrator",
+ "module": "Fual Doc",
+ "name": "OFP",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

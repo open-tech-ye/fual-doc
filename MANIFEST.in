@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include fual_doc *.css
+recursive-include fual_doc *.csv
+recursive-include fual_doc *.html
+recursive-include fual_doc *.ico
+recursive-include fual_doc *.js
+recursive-include fual_doc *.json
+recursive-include fual_doc *.md
+recursive-include fual_doc *.png
+recursive-include fual_doc *.py
+recursive-include fual_doc *.svg
+recursive-include fual_doc *.txt
+recursive-exclude fual_doc *.pyc
