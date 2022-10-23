@@ -6,33 +6,6 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-<<<<<<< HEAD
-  "time_section",
-  "standard_time_of_departure_std",
-  "standard_time_of_arrival_sta",
-  "planned_taxi_time_p_taxit",
-  "planned_trip_time_p_tript",
-  "planned_block_time_p_blkt",
-  "fuel_section",
-  "planned_block_fuel_p_blkf",
-  "planned_taxi_fuel_p_taxif",
-  "planned_takeoff_fuel_p_tof",
-  "planned_trip_fuel_p_tripf",
-  "weight_section",
-  "planned_dry_operating_weight_p_dow",
-  "planned_payload_p_pld",
-  "maximum_zero_fuel_weight_mzfw",
-  "zero_fuel_weight_p_zfw",
-  "maximum_takeoff_weight_mtow",
-  "takeoff_weight_p_tow",
-  "maximum_landing_weight_structure_mlw",
-  "landing_weight_p_lw",
-  "planned_destination_alternate_p_altn",
-  "nearest_alternate_n_altn",
-  "planned_enroute_alternate_p_era",
-  "other_section",
-  "addition"
-=======
   "m633supplementaryheader_section",
   "ofpcomputedtime",
   "flightplanid",
@@ -82,7 +55,6 @@
   "altn4_icao",
   "altn4_fuel",
   "xml_import"
->>>>>>> 5c613dc34f66fc1746d435d511a86a7138530af3
  ],
  "fields": [
   {
@@ -281,11 +253,6 @@
    "label": "OFP EZFW"
   },
   {
-<<<<<<< HEAD
-   "fieldname": "addition",
-   "fieldtype": "Code",
-   "label": "Addition"
-=======
    "fieldname": "ofp_dyn_tow",
    "fieldtype": "Data",
    "label": "OFP DYN TOW"
@@ -335,16 +302,11 @@
    "fieldtype": "Link",
    "label": "xml_import",
    "options": "Import XML"
->>>>>>> 5c613dc34f66fc1746d435d511a86a7138530af3
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
-<<<<<<< HEAD
- "modified": "2022-10-20 01:50:53.650497",
-=======
  "modified": "2022-10-23 10:50:11.428000",
->>>>>>> 5c613dc34f66fc1746d435d511a86a7138530af3
  "modified_by": "Administrator",
  "module": "Fual Doc",
  "name": "OFP",
