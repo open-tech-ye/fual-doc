@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-10-21 21:46:56.745334",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "xml_file",
+  "column_break_2",
+  "import_xml"
+ ],
+ "fields": [
+  {
+   "fieldname": "xml_file",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "import_xml",
+   "fieldtype": "Check",
+   "label": "import XML"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "OFP",
+   "link_fieldname": "xml_import"
+  }
+ ],
+ "modified": "2022-10-23 11:01:10.721593",
+ "modified_by": "Administrator",
+ "module": "Fual Doc",
+ "name": "Import XML",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
