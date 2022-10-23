@@ -1,33 +1,125 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:file_name",
  "creation": "2022-10-11 21:41:52.349108",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "subject",
-  "flight"
+  "file_name",
+  "ground_station_codes",
+  "transmation_report",
+  "fligth_number",
+  "aircraf_reqisterion",
+  "real_filgth_number",
+  "depart_date",
+  "dep",
+  "arr",
+  "out_fob_time",
+  "out_fob_dist",
+  "off_time",
+  "off_fob_hunder_in_kg",
+  "on_time",
+  "on_fob_hunder_in_kg",
+  "in_time",
+  "in_fob_hunder_in_kg"
  ],
  "fields": [
   {
-   "fieldname": "subject",
+   "fieldname": "file_name",
    "fieldtype": "Data",
-   "label": "Subject"
+   "label": "file_name",
+   "unique": 1
   },
   {
-   "fieldname": "flight",
-   "fieldtype": "Link",
-   "label": "Flight",
-   "options": "Flight"
+   "fieldname": "ground_station_codes",
+   "fieldtype": "Data",
+   "label": "ground_station_codes"
+  },
+  {
+   "fieldname": "transmation_report",
+   "fieldtype": "Data",
+   "label": "transmation_report"
+  },
+  {
+   "fieldname": "fligth_number",
+   "fieldtype": "Data",
+   "label": "fligth_number"
+  },
+  {
+   "fieldname": "aircraf_reqisterion",
+   "fieldtype": "Data",
+   "label": "aircraf_reqisterion"
+  },
+  {
+   "fieldname": "real_filgth_number",
+   "fieldtype": "Data",
+   "label": "real_filgth_number"
+  },
+  {
+   "fieldname": "depart_date",
+   "fieldtype": "Data",
+   "label": "depart_date"
+  },
+  {
+   "fieldname": "dep",
+   "fieldtype": "Data",
+   "label": "dep"
+  },
+  {
+   "fieldname": "arr",
+   "fieldtype": "Data",
+   "label": "arr"
+  },
+  {
+   "fieldname": "out_fob_time",
+   "fieldtype": "Data",
+   "label": "out_fob_time"
+  },
+  {
+   "fieldname": "out_fob_dist",
+   "fieldtype": "Data",
+   "label": "out_fob_dist"
+  },
+  {
+   "fieldname": "off_time",
+   "fieldtype": "Data",
+   "label": "off_time"
+  },
+  {
+   "fieldname": "off_fob_hunder_in_kg",
+   "fieldtype": "Data",
+   "label": "off_fob_hunder_in_kg"
+  },
+  {
+   "fieldname": "on_time",
+   "fieldtype": "Data",
+   "label": "on_time"
+  },
+  {
+   "fieldname": "on_fob_hunder_in_kg",
+   "fieldtype": "Data",
+   "label": "on_fob_hunder_in_kg"
+  },
+  {
+   "fieldname": "in_time",
+   "fieldtype": "Data",
+   "label": "in_time"
+  },
+  {
+   "fieldname": "in_fob_hunder_in_kg",
+   "fieldtype": "Data",
+   "label": "in_fob_hunder_in_kg"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-10-11 21:41:52.349108",
+ "modified": "2022-10-20 01:21:29.588466",
  "modified_by": "Administrator",
  "module": "Fual Doc",
  "name": "FSR",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -44,5 +136,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

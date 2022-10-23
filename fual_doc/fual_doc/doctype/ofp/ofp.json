@@ -30,8 +30,7 @@
   "nearest_alternate_n_altn",
   "planned_enroute_alternate_p_era",
   "other_section",
-  "addition",
-  "flight"
+  "addition"
  ],
  "fields": [
   {
@@ -159,17 +158,11 @@
    "fieldname": "addition",
    "fieldtype": "Code",
    "label": "Addition"
-  },
-  {
-   "fieldname": "flight",
-   "fieldtype": "Link",
-   "label": "Flight",
-   "options": "Flight"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-10-11 21:42:07.245411",
+ "modified": "2022-10-20 01:50:53.650497",
  "modified_by": "Administrator",
  "module": "Fual Doc",
  "name": "OFP",
@@ -189,5 +182,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }

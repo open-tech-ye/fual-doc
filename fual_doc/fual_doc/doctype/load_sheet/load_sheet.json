@@ -1,62 +1,167 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:file_name",
  "creation": "2022-10-10 22:13:16.044042",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "actual_dry_operating_weight_dow",
-  "actual_payload_pld",
-  "actual_zero_fuel_weight_zfw",
-  "actual_takeoff_weight_tow",
-  "section_break_5",
-  "addition",
-  "flight"
+  "file_name",
+  "checked",
+  "approved",
+  "from",
+  "to",
+  "flight",
+  "a_c_reg",
+  "version_crew",
+  "date",
+  "time",
+  "load_in_compartments_w",
+  "load_in_compartments_d",
+  "passenger_cabin_bag_w",
+  "passenger_cabin_bag_d",
+  "total_traffic_load",
+  "dry_operating_weight",
+  "zero_fuel_weight_actual",
+  "max_zero_fuel_weight_actual",
+  "take_off_fuel",
+  "take_off_weight_actual",
+  "max_take_off_weight_actual",
+  "trip_fuel",
+  "landing_weight_actual",
+  "max_landing_weight_actual"
  ],
  "fields": [
   {
-   "fieldname": "actual_dry_operating_weight_dow",
+   "fieldname": "file_name",
    "fieldtype": "Data",
-   "label": "Actual Dry Operating Weight DOW"
+   "label": "File Name",
+   "unique": 1
   },
   {
-   "fieldname": "actual_payload_pld",
+   "fieldname": "checked",
    "fieldtype": "Data",
-   "label": "Actual PayLoaD PLD"
+   "label": "CHECKED"
   },
   {
-   "fieldname": "actual_zero_fuel_weight_zfw",
+   "fieldname": "approved",
    "fieldtype": "Data",
-   "label": "Actual Zero Fuel Weight ZFW"
+   "label": "APPROVED"
   },
   {
-   "fieldname": "actual_takeoff_weight_tow",
+   "fieldname": "a_c_reg",
    "fieldtype": "Data",
-   "label": "Actual TakeOff Weight TOW"
+   "label": "A C REG"
   },
   {
-   "fieldname": "section_break_5",
-   "fieldtype": "Section Break"
+   "fieldname": "version_crew",
+   "fieldtype": "Data",
+   "label": "VERSION CREW"
   },
   {
-   "fieldname": "addition",
-   "fieldtype": "Code",
-   "label": "Addition"
+   "fieldname": "date",
+   "fieldtype": "Data",
+   "label": "DATE"
+  },
+  {
+   "fieldname": "time",
+   "fieldtype": "Data",
+   "label": "TIME"
+  },
+  {
+   "fieldname": "load_in_compartments_w",
+   "fieldtype": "Data",
+   "label": "LOAD IN COMPARTMENTS W"
+  },
+  {
+   "fieldname": "load_in_compartments_d",
+   "fieldtype": "Data",
+   "label": "LOAD IN COMPARTMENTS D"
+  },
+  {
+   "fieldname": "total_traffic_load",
+   "fieldtype": "Data",
+   "label": "TOTAL TRAFFIC LOAD"
+  },
+  {
+   "fieldname": "dry_operating_weight",
+   "fieldtype": "Data",
+   "label": "DRY OPERATING WEIGHT"
+  },
+  {
+   "fieldname": "zero_fuel_weight_actual",
+   "fieldtype": "Data",
+   "label": "ZERO FUEL WEIGHT ACTUAL"
+  },
+  {
+   "fieldname": "max_zero_fuel_weight_actual",
+   "fieldtype": "Data",
+   "label": "MAX ZERO FUEL WEIGHT ACTUAL"
+  },
+  {
+   "fieldname": "take_off_fuel",
+   "fieldtype": "Data",
+   "label": "TAKE OFF FUEL"
+  },
+  {
+   "fieldname": "take_off_weight_actual",
+   "fieldtype": "Data",
+   "label": "TAKE OFF WEIGHT ACTUAL"
+  },
+  {
+   "fieldname": "max_take_off_weight_actual",
+   "fieldtype": "Data",
+   "label": "MAX TAKE OFF WEIGHT ACTUAL"
+  },
+  {
+   "fieldname": "trip_fuel",
+   "fieldtype": "Data",
+   "label": "TRIP FUEL"
+  },
+  {
+   "fieldname": "landing_weight_actual",
+   "fieldtype": "Data",
+   "label": "LANDING WEIGHT ACTUAL"
+  },
+  {
+   "fieldname": "max_landing_weight_actual",
+   "fieldtype": "Data",
+   "label": "MAX LANDING WEIGHT ACTUAL"
+  },
+  {
+   "fieldname": "from",
+   "fieldtype": "Data",
+   "label": "FROM"
+  },
+  {
+   "fieldname": "to",
+   "fieldtype": "Data",
+   "label": "TO"
   },
   {
    "fieldname": "flight",
-   "fieldtype": "Link",
-   "label": "Flight",
-   "options": "Flight"
+   "fieldtype": "Data",
+   "label": "FLIGHT"
+  },
+  {
+   "fieldname": "passenger_cabin_bag_w",
+   "fieldtype": "Data",
+   "label": "PASSENGER/CABIN BAG W"
+  },
+  {
+   "fieldname": "passenger_cabin_bag_d",
+   "fieldtype": "Data",
+   "label": "PASSENGER/CABIN BAG D"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-10-11 21:42:22.957263",
+ "modified": "2022-10-20 03:40:56.219036",
  "modified_by": "Administrator",
  "module": "Fual Doc",
  "name": "Load Sheet",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -73,5 +178,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "states": []
 }
