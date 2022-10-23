@@ -6,170 +6,307 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "time_section",
-  "standard_time_of_departure_std",
-  "standard_time_of_arrival_sta",
-  "planned_taxi_time_p_taxit",
-  "planned_trip_time_p_tript",
-  "planned_block_time_p_blkt",
-  "fuel_section",
-  "planned_block_fuel_p_blkf",
-  "planned_taxi_fuel_p_taxif",
-  "planned_takeoff_fuel_p_tof",
-  "planned_trip_fuel_p_tripf",
-  "weight_section",
-  "planned_dry_operating_weight_p_dow",
-  "planned_payload_p_pld",
-  "maximum_zero_fuel_weight_mzfw",
-  "zero_fuel_weight_p_zfw",
-  "maximum_takeoff_weight_mtow",
-  "takeoff_weight_p_tow",
-  "maximum_landing_weight_structure_mlw",
-  "landing_weight_p_lw",
-  "planned_destination_alternate_p_altn",
-  "nearest_alternate_n_altn",
-  "planned_enroute_alternate_p_era",
-  "other_section",
-  "addition",
-  "flight"
+  "m633supplementaryheader_section",
+  "ofpcomputedtime",
+  "flightplanid",
+  "date",
+  "dayofweek",
+  "flt_no",
+  "dep_icao",
+  "arr_icao",
+  "arr_iata",
+  "reg",
+  "type",
+  "std",
+  "flightplansummary_section",
+  "sta",
+  "blk",
+  "flightplanheader_section",
+  "ofp_perffactor",
+  "ofp_trip_ff",
+  "ofp_hold_ff",
+  "ofp_ci",
+  "fuelheader_section",
+  "ofp_trip_time",
+  "ofp_trip_fuel",
+  "ofp_cont_time",
+  "extrafuel",
+  "tankering",
+  "maximumfuelweight",
+  "takeofffuel",
+  "takeofffuel_t",
+  "taxifuel",
+  "taxitime",
+  "blockfuel",
+  "blockfueltime",
+  "arrivalfuel",
+  "deltazfw",
+  "weightheader_section",
+  "ofp_dow",
+  "payload",
+  "ofp_ezfw",
+  "ofp_dyn_tow",
+  "ofp_dyn_ldw",
+  "alts_section",
+  "altn2_icao",
+  "altn2_fuel",
+  "altn3_icao",
+  "altn3_fuel",
+  "altn4_icao",
+  "altn4_fuel",
+  "xml_import"
  ],
  "fields": [
   {
-   "fieldname": "standard_time_of_departure_std",
+   "fieldname": "ofpcomputedtime",
    "fieldtype": "Data",
-   "label": "Standard Time of Departure STD"
+   "label": "OFPComputedTime"
   },
   {
-   "fieldname": "standard_time_of_arrival_sta",
+   "fieldname": "flightplanid",
    "fieldtype": "Data",
-   "label": "Standard Time of Arrival STA"
+   "label": "flightPlanId"
   },
   {
-   "fieldname": "planned_taxi_time_p_taxit",
+   "fieldname": "date",
    "fieldtype": "Data",
-   "label": "Planned Taxi Time P TaxiT"
+   "label": "Date"
   },
   {
-   "fieldname": "planned_trip_time_p_tript",
+   "fieldname": "dayofweek",
    "fieldtype": "Data",
-   "label": "Planned Trip Time P TripT"
+   "label": "DayOfWeek"
   },
   {
-   "description": "which is STA minus STD.",
-   "fieldname": "planned_block_time_p_blkt",
+   "fieldname": "flt_no",
    "fieldtype": "Data",
-   "label": "Planned Block Time P BlkT"
+   "label": "Flt No."
   },
   {
-   "fieldname": "fuel_section",
+   "fieldname": "dep_icao",
+   "fieldtype": "Data",
+   "label": "Dep ICAO"
+  },
+  {
+   "fieldname": "arr_icao",
+   "fieldtype": "Data",
+   "label": "Arr ICAO"
+  },
+  {
+   "fieldname": "arr_iata",
+   "fieldtype": "Data",
+   "label": "Arr IATA"
+  },
+  {
+   "fieldname": "m633supplementaryheader_section",
    "fieldtype": "Section Break",
-   "label": "Fuel"
+   "label": "M633SupplementaryHeader"
   },
   {
-   "fieldname": "planned_block_fuel_p_blkf",
+   "fieldname": "reg",
    "fieldtype": "Data",
-   "label": "Planned Block Fuel P BlkF"
+   "label": "Reg"
   },
   {
-   "fieldname": "planned_taxi_fuel_p_taxif",
+   "fieldname": "type",
    "fieldtype": "Data",
-   "label": "Planned Taxi Fuel P TaxiF"
+   "label": "Type"
   },
   {
-   "fieldname": "planned_takeoff_fuel_p_tof",
+   "fieldname": "std",
    "fieldtype": "Data",
-   "label": "Planned TakeOff Fuel P T/OF"
+   "label": "STD"
   },
   {
-   "fieldname": "planned_trip_fuel_p_tripf",
-   "fieldtype": "Data",
-   "label": "planned Trip Fuel P TripF"
-  },
-  {
-   "fieldname": "time_section",
+   "fieldname": "flightplansummary_section",
    "fieldtype": "Section Break",
-   "label": "Time"
+   "label": "FlightPlanSummary"
   },
   {
-   "fieldname": "weight_section",
+   "fieldname": "sta",
+   "fieldtype": "Data",
+   "label": "STA"
+  },
+  {
+   "fieldname": "blk",
+   "fieldtype": "Data",
+   "label": "BLK"
+  },
+  {
+   "fieldname": "flightplanheader_section",
    "fieldtype": "Section Break",
-   "label": "Weight"
+   "label": "FlightPlanHeader"
   },
   {
-   "fieldname": "planned_dry_operating_weight_p_dow",
+   "fieldname": "ofp_perffactor",
    "fieldtype": "Data",
-   "label": "Planned Dry Operating Weight P DOW"
+   "label": "OFP perf.Factor"
   },
   {
-   "fieldname": "planned_payload_p_pld",
+   "fieldname": "ofp_trip_ff",
    "fieldtype": "Data",
-   "label": "Planned PayLoad P PLD"
+   "label": "OFP TRIP FF"
   },
   {
-   "fieldname": "maximum_zero_fuel_weight_mzfw",
+   "fieldname": "ofp_hold_ff",
    "fieldtype": "Data",
-   "label": "Maximum Zero Fuel Weight MZFW"
+   "label": "OFP HOLD FF"
   },
   {
-   "fieldname": "zero_fuel_weight_p_zfw",
+   "fieldname": "ofp_ci",
    "fieldtype": "Data",
-   "label": " Zero Fuel Weight P ZFW"
+   "label": "OFP CI"
   },
   {
-   "fieldname": "maximum_takeoff_weight_mtow",
-   "fieldtype": "Data",
-   "label": "Maximum TakeOff Weight MTOW"
-  },
-  {
-   "fieldname": "takeoff_weight_p_tow",
-   "fieldtype": "Data",
-   "label": "TakeOff Weight P TOW"
-  },
-  {
-   "fieldname": "maximum_landing_weight_structure_mlw",
-   "fieldtype": "Data",
-   "label": "Maximum Landing Weight Structure MLW"
-  },
-  {
-   "fieldname": "landing_weight_p_lw",
-   "fieldtype": "Data",
-   "label": "Landing Weight P LW"
-  },
-  {
-   "fieldname": "planned_destination_alternate_p_altn",
-   "fieldtype": "Data",
-   "label": "Planned Destination Alternate P ALTN"
-  },
-  {
-   "fieldname": "nearest_alternate_n_altn",
-   "fieldtype": "Data",
-   "label": "Nearest Alternate N ALTN"
-  },
-  {
-   "fieldname": "planned_enroute_alternate_p_era",
-   "fieldtype": "Data",
-   "label": "Planned Enroute Alternate P ERA"
-  },
-  {
-   "fieldname": "other_section",
+   "fieldname": "fuelheader_section",
    "fieldtype": "Section Break",
-   "label": "Other"
+   "label": "FuelHeader"
   },
   {
-   "fieldname": "addition",
-   "fieldtype": "Code",
-   "label": "Addition"
+   "fieldname": "ofp_trip_time",
+   "fieldtype": "Data",
+   "label": "OFP Trip Time"
   },
   {
-   "fieldname": "flight",
+   "fieldname": "ofp_trip_fuel",
+   "fieldtype": "Data",
+   "label": "OFP Trip Fuel"
+  },
+  {
+   "fieldname": "ofp_cont_time",
+   "fieldtype": "Data",
+   "label": "OFP cont Time"
+  },
+  {
+   "fieldname": "extrafuel",
+   "fieldtype": "Data",
+   "label": "ExtraFuel"
+  },
+  {
+   "fieldname": "tankering",
+   "fieldtype": "Data",
+   "label": "Tankering"
+  },
+  {
+   "fieldname": "maximumfuelweight",
+   "fieldtype": "Data",
+   "label": "MaximumFuelWeight"
+  },
+  {
+   "fieldname": "takeofffuel",
+   "fieldtype": "Data",
+   "label": "TakeOffFuel"
+  },
+  {
+   "fieldname": "takeofffuel_t",
+   "fieldtype": "Data",
+   "label": "TakeOffFuel T"
+  },
+  {
+   "fieldname": "taxifuel",
+   "fieldtype": "Data",
+   "label": "TaxiFuel"
+  },
+  {
+   "fieldname": "taxitime",
+   "fieldtype": "Data",
+   "label": "TaxiTime"
+  },
+  {
+   "fieldname": "blockfuel",
+   "fieldtype": "Data",
+   "label": "BlockFuel"
+  },
+  {
+   "fieldname": "blockfueltime",
+   "fieldtype": "Data",
+   "label": "BlockFuelTime"
+  },
+  {
+   "fieldname": "arrivalfuel",
+   "fieldtype": "Data",
+   "label": "ArrivalFuel"
+  },
+  {
+   "fieldname": "deltazfw",
+   "fieldtype": "Data",
+   "label": "DeltaZFW"
+  },
+  {
+   "fieldname": "weightheader_section",
+   "fieldtype": "Section Break",
+   "label": "WeightHeader"
+  },
+  {
+   "fieldname": "ofp_dow",
+   "fieldtype": "Data",
+   "label": "OFP DOW"
+  },
+  {
+   "fieldname": "payload",
+   "fieldtype": "Data",
+   "label": "Payload"
+  },
+  {
+   "fieldname": "ofp_ezfw",
+   "fieldtype": "Data",
+   "label": "OFP EZFW"
+  },
+  {
+   "fieldname": "ofp_dyn_tow",
+   "fieldtype": "Data",
+   "label": "OFP DYN TOW"
+  },
+  {
+   "fieldname": "ofp_dyn_ldw",
+   "fieldtype": "Data",
+   "label": "OFP DYN LDW"
+  },
+  {
+   "fieldname": "alts_section",
+   "fieldtype": "Section Break",
+   "label": "alts"
+  },
+  {
+   "fieldname": "altn2_icao",
+   "fieldtype": "Data",
+   "label": "Altn2 ICAO"
+  },
+  {
+   "fieldname": "altn2_fuel",
+   "fieldtype": "Data",
+   "label": "Altn2 Fuel"
+  },
+  {
+   "fieldname": "altn3_icao",
+   "fieldtype": "Data",
+   "label": "Altn3 ICAO"
+  },
+  {
+   "fieldname": "altn3_fuel",
+   "fieldtype": "Data",
+   "label": "Altn3 Fuel"
+  },
+  {
+   "fieldname": "altn4_icao",
+   "fieldtype": "Data",
+   "label": "Altn4 ICAO"
+  },
+  {
+   "fieldname": "altn4_fuel",
+   "fieldtype": "Data",
+   "label": "Altn4 Fuel"
+  },
+  {
+   "fieldname": "xml_import",
    "fieldtype": "Link",
-   "label": "Flight",
-   "options": "Flight"
+   "label": "xml_import",
+   "options": "Import XML"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-10-11 21:42:07.245411",
+ "modified": "2022-10-23 10:50:11.428000",
  "modified_by": "Administrator",
  "module": "Fual Doc",
  "name": "OFP",
