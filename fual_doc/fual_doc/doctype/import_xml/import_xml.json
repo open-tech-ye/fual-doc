@@ -7,6 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "xml_file",
+  "folder_import",
+  "folder",
   "column_break_2",
   "import_xml"
  ],
@@ -14,8 +16,7 @@
   {
    "fieldname": "xml_file",
    "fieldtype": "Attach",
-   "in_list_view": 1,
-   "reqd": 1
+   "in_list_view": 1
   },
   {
    "default": "0",
@@ -26,6 +27,18 @@
   {
    "fieldname": "column_break_2",
    "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.folder_import==1",
+   "fieldname": "folder",
+   "fieldtype": "Data",
+   "label": "Folder"
+  },
+  {
+   "default": "0",
+   "fieldname": "folder_import",
+   "fieldtype": "Check",
+   "label": "Folder Import"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -35,7 +48,7 @@
    "link_fieldname": "xml_import"
   }
  ],
- "modified": "2022-10-23 11:01:10.721593",
+ "modified": "2022-10-27 23:50:03.798669",
  "modified_by": "Administrator",
  "module": "Fual Doc",
  "name": "Import XML",

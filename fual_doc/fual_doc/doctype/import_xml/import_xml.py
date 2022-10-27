@@ -6,35 +6,56 @@ import json
 import frappe
 from frappe.model.document import Document
 from frappe.utils import get_site_path
+from frappe.core.doctype.file.file import get_files_in_folder
+from datetime import date
+from frappe.utils import getdate
+from lxml import etree
 
 
 class ImportXML(Document):
 	def save(self, *args, **kwargs):
 		if not self.is_new():
 			self.save_xml_date()
-
-		
 		super().save(*args, **kwargs) # call the base save method
 
 	def save_xml_date(self):
-		print(self.xml_file)
-		print("frappe.get_site_path()", frappe.get_site_path())
+		if self.folder_import:
+			file_list = self.get_folder_files("Home/"+self.folder)
+			for i in file_list:
+				if frappe.db.exists("OFP", frappe.get_site_path()+"/"+i.file_url):
+					continue
+				self.add_ofp_records(frappe.get_site_path()+"/"+i.file_url)
+			
+		else:
+			file_path = frappe.get_site_path()+"/"+self.xml_file
+			self.add_ofp_records(file_path)
+		
+	def get_folder_files(self, folder):
+		files = frappe.db.get_list(
+		"File",
+		{"folder": folder},
+		["file_url"]
+		)
+		return files
 
 
-		with open(frappe.get_site_path()+"/"+self.xml_file) as xml_file:
+	def add_ofp_records(self, file_path):
+		xtree = etree.parse(file_path)
+		xroot = xtree.getroot()
+		
+		with open(file_path) as xml_file:
 			data_dict = xmltodict.parse(xml_file.read())
 		
 		thisdict = {}
-		# thisdict["name"] = ''
+		thisdict["xml_file_path"] = file_path
 		thisdict["ofpcomputedtime"] = data_dict["FlightPlan"]["@computedTime"]
 		thisdict["flightplanid"] =  data_dict["FlightPlan"]["@flightPlanId"]
 		thisdict["date"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["@flightOriginDate"]
-		thisdict["dayofweek"] = ''
+		thisdict["dayofweek"] = date.isoweekday(getdate(thisdict["date"]))
 		thisdict["flt_no"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["FlightIdentification"]["FlightNumber"]["@number"]
 		
 		thisdict["dep_icao"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["DepartureAirport"]["AirportICAOCode"]
 		thisdict["arr_icao"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["ArrivalAirport"]["AirportICAOCode"]
-		# thisdict["Altn1 ICAO"] = data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["EstimatedWeight"]["Value"]["#text"]+" "
 		# + data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["EstimatedWeight"]["Value"]["@unit"] + " , "
 		# + data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["FinalReserve"]["EstimatedWeight"]["Value"]["#text"]+" "
 		# + data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["FinalReserve"]["EstimatedWeight"]["Value"]["@unit"]
@@ -124,12 +145,18 @@ class ImportXML(Document):
 		
 
 		#data_dict[""][""][""][""][""][""]
-		thisdict["altn2_icao"] = None
-		thisdict["altn2_fuel"] = None
-		thisdict["altn3_icao"] = None
-		thisdict["altn3_fuel"] = None
-		thisdict["altn4_icao"] = None
-		thisdict["altn4_fuel"] = None
+		# print("here")
+		# print(data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["Airport"]["AirportICAOCode"])
+		# for i in data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["Airport"]["AirportICAOCode"]:
+		# 	print(i)
+		# thisdict["altn1_icao"] = xroot.findall('.//{*}FuelHeader/{*}AlternateFuels/{*}AlternateFuel/{*}Airport/{*}AirportICAOCode')[0].text
+		
+		# thisdict["altn2_icao"] = xroot.findall('.//{*}FuelHeader/{*}AlternateFuels/{*}AlternateFuel/{*}Airport/{*}AirportICAOCode')[1].text
+		# thisdict["altn2_fuel"] = None
+		# thisdict["altn3_icao"] = xroot.findall('.//{*}FuelHeader/{*}AlternateFuels/{*}AlternateFuel/{*}Airport/{*}AirportICAOCode')[2].text
+		# thisdict["altn3_fuel"] = None
+		# thisdict["altn4_icao"] = xroot.findall('.//{*}FuelHeader/{*}AlternateFuels/{*}AlternateFuel/{*}Airport/{*}AirportICAOCode')[3].text
+		# thisdict["altn4_fuel"] = None
 
 		# thisdict["FSR OUT"] = data_dict[""][""][""][""][""][""]
 		# thisdict["FSR OFF"] = data_dict[""][""][""][""][""][""]
@@ -153,17 +180,6 @@ class ImportXML(Document):
 		
 
 
-
-
-
-		thisdict["xml_import"] = self.name
-		print(thisdict)
-		doc = frappe.new_doc("OFP")
-		doc.update(thisdict)
-
-		doc.insert()
-
-
 		# OFPComputedTime = 
 		# print(data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["@flightOriginDate"])
 		# for k,FlightPlan in data_dict.items():
@@ -183,4 +199,12 @@ class ImportXML(Document):
 		# with open("data.json", "w") as json_file:
 		# 		json_file.write(json_data)
 
-	pass
+
+
+
+		thisdict["xml_import"] = self.name
+
+		doc = frappe.new_doc("OFP")
+		doc.update(thisdict)
+		doc.insert()
+		# return thisdict
