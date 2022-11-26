@@ -10,7 +10,7 @@ from frappe.core.doctype.file.file import get_files_in_folder
 from datetime import date
 from frappe.utils import getdate
 from lxml import etree
-
+from datetime import datetime
 
 class ImportXML(Document):
 	def save(self, *args, **kwargs):
@@ -51,7 +51,7 @@ class ImportXML(Document):
 		thisdict["ofpcomputedtime"] = data_dict["FlightPlan"]["@computedTime"]
 		thisdict["flightplanid"] =  data_dict["FlightPlan"]["@flightPlanId"]
 		thisdict["date"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["@flightOriginDate"]
-		thisdict["dayofweek"] = date.isoweekday(getdate(thisdict["date"]))
+		thisdict["dayofweek"] = datetime.isoweekday(getdate(thisdict["date"]))
 		thisdict["flt_no"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["FlightIdentification"]["FlightNumber"]["@number"]
 		
 		thisdict["dep_icao"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["DepartureAirport"]["AirportICAOCode"]
@@ -65,35 +65,49 @@ class ImportXML(Document):
 		# thisdict["Altn1 IATA"] = ["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["ArrivalAirport"]["AirportICAOCode"]
 		thisdict["reg"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Aircraft"]["@aircraftRegistration"]
 		thisdict["type"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Aircraft"]["AircraftModel"]["AircraftICAOType"]
+		
 		thisdict["std"] = data_dict["FlightPlan"]["M633SupplementaryHeader"]["Flight"]["@scheduledTimeOfDeparture"]
+		std_info = datetime.strptime(thisdict["std"], '%Y-%m-%dT%H:%M:%SZ').replace(second=0, microsecond=0)
+		thisdict["std_date"] = std_info.date()
+		thisdict["std_time"] = std_info.time()
+	
+
 		thisdict["sta"] = data_dict["FlightPlan"]["FlightPlanSummary"]["ScheduledTimeOfArrival"]
+		sta_info = datetime.strptime(thisdict["sta"], '%Y-%m-%dT%H:%M:%SZ').replace(second=0, microsecond=0)
+		thisdict["sta_date"] = sta_info.date()
+		thisdict["sta_time"] = sta_info.time()
+		
 		thisdict["blk"] = data_dict["FlightPlan"]["FlightPlanSummary"]["BlockTime"]["EstimatedTime"]["Value"]
+		thisdict["blk_time"] = datetime.strptime(thisdict["blk"], 'PT%HH%MM')
+		
+		
 		thisdict["ofp_perffactor"] = data_dict["FlightPlan"]["FlightPlanHeader"]["PerformanceFactor"]
-		thisdict["ofp_trip_ff"] = ' '.join((data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["AverageFuelFlow"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["AverageFuelFlow"]["Value"]["@unit"]))
+		thisdict["ofp_trip_ff"] =  data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["AverageFuelFlow"]["Value"]["#text"]
+		data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["AverageFuelFlow"]["Value"]["@unit"]  
 
 		# """
 		# data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["AverageFuelFlow"]["Value"]["#text"] 
 		#  $data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["AverageFuelFlow"]["Value"]["@unit"]
 		
 		# """
-		#' '.join(("string1","string2","stringN"))
+		# "string1","string2","stringN"  
 
 		
 
-		thisdict["ofp_hold_ff"] = ' '.join((data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["HoldingFuelFlow"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["HoldingFuelFlow"]["Value"]["@unit"]))
+		thisdict["ofp_hold_ff"] = data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["HoldingFuelFlow"]["Value"]["#text"]
+		
+		thisdict["ofp_hold_ff_unit"] = data_dict["FlightPlan"]["FlightPlanHeader"]["FuelFlowInformation"]["HoldingFuelFlow"]["Value"]["@unit"]
 		
 		thisdict["ofp_ci"] = data_dict["FlightPlan"]["FlightPlanHeader"]["RouteInformation"]["CruiseProcedure"]["@procedure"]
 		
 		thisdict["ofp_trip_time"] = data_dict["FlightPlan"]["FuelHeader"]["TripFuel"]["Duration"]["Value"]
-		thisdict["ofp_trip_fuel"] =' '.join((data_dict["FlightPlan"]["FuelHeader"]["ContingencyFuel"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FuelHeader"]["ContingencyFuel"]["EstimatedWeight"]["Value"]["@unit"]))
+		thisdict["ofp_trip_fuel"] = data_dict["FlightPlan"]["FuelHeader"]["TripFuel"]["EstimatedWeight"]["Value"]["#text"]
+		thisdict["ofp_trip_fuel_unit"] = data_dict["FlightPlan"]["FuelHeader"]["TripFuel"]["EstimatedWeight"]["Value"]["@unit"]
 		
 
 		thisdict["ofp_cont_time"] = data_dict["FlightPlan"]["FuelHeader"]["ContingencyFuel"]["Duration"]["Value"]
-		# thisdict["OFP Altn Fuel"] = ' '.join((data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["EstimatedWeight"]["Value"]["#text"],
-		# data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["EstimatedWeight"]["Value"]["#@unit"]))
+		# thisdict["OFP Altn Fuel"] =  data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["EstimatedWeight"]["Value"]["#text"]
+		# data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["EstimatedWeight"]["Value"]["#@unit"]  
 		
 		# thisdict["OFP Altn Time"] = data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["Duration"]["Value"]
 		# thisdict["Final Resv. 30 min"] = data_dict["FlightPlan"]["FuelHeader"]["AlternateFuels"]["AlternateFuel"]["FinalReserve"]["Duration"]["Value"]
@@ -102,46 +116,46 @@ class ImportXML(Document):
 		thisdict["tankering"] = None
 		
 		
-		thisdict["maximumfuelweight"] = ' '.join(( data_dict["FlightPlan"]["FuelHeader"]["PossibleExtraFuel"]["MaximumFuelWeight"]["Weight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FuelHeader"]["PossibleExtraFuel"]["MaximumFuelWeight"]["Weight"]["Value"]["@unit"]))
+		thisdict["maximumfuelweight"] = data_dict["FlightPlan"]["FuelHeader"]["PossibleExtraFuel"]["MaximumFuelWeight"]["Weight"]["Value"]["#text"]
+		thisdict["maximumfuelweight_unit"] = data_dict["FlightPlan"]["FuelHeader"]["PossibleExtraFuel"]["MaximumFuelWeight"]["Weight"]["Value"]["@unit"]
 		
 
-		thisdict["takeofffuel"] = ' '.join((data_dict["FlightPlan"]["FuelHeader"]["TakeOffFuel"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FuelHeader"]["TakeOffFuel"]["EstimatedWeight"]["Value"]["@unit"]))
+		thisdict["takeofffuel"] = data_dict["FlightPlan"]["FuelHeader"]["TakeOffFuel"]["EstimatedWeight"]["Value"]["#text"]
+		thisdict["takeofffuel_unit"] = data_dict["FlightPlan"]["FuelHeader"]["TakeOffFuel"]["EstimatedWeight"]["Value"]["@unit"]
 		
 
 		thisdict["takeofffuel_t"] = data_dict["FlightPlan"]["FuelHeader"]["TakeOffFuel"]["Duration"]["Value"]
-		thisdict["taxifuel"] = ' '.join((data_dict["FlightPlan"]["FuelHeader"]["TaxiFuel"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FuelHeader"]["TaxiFuel"]["EstimatedWeight"]["Value"]["@unit"]))
+		thisdict["taxifuel"] = data_dict["FlightPlan"]["FuelHeader"]["TaxiFuel"]["EstimatedWeight"]["Value"]["#text"]
+		thisdict["taxifuel_unit"] = data_dict["FlightPlan"]["FuelHeader"]["TaxiFuel"]["EstimatedWeight"]["Value"]["@unit"]
 	
 		thisdict["taxitime"] = data_dict["FlightPlan"]["FuelHeader"]["TaxiFuel"]["Duration"]["Value"]
 
-		thisdict["blockfuel"] =' '.join((data_dict["FlightPlan"]["FuelHeader"]["BlockFuel"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FuelHeader"]["BlockFuel"]["EstimatedWeight"]["Value"]["@unit"]))
+		thisdict["blockfuel"] = data_dict["FlightPlan"]["FuelHeader"]["BlockFuel"]["EstimatedWeight"]["Value"]["#text"]
+		thisdict["blockfuel_unit"] = data_dict["FlightPlan"]["FuelHeader"]["BlockFuel"]["EstimatedWeight"]["Value"]["@unit"]
 	
 
 		thisdict["blockfueltime"] = data_dict["FlightPlan"]["FuelHeader"]["BlockFuel"]["Duration"]["Value"]
 
-		thisdict["arrivalfuel"] = ' '.join(( data_dict["FlightPlan"]["FuelHeader"]["ArrivalFuel"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["FuelHeader"]["ArrivalFuel"]["EstimatedWeight"]["Value"]["@unit"]))
+		thisdict["arrivalfuel"] = data_dict["FlightPlan"]["FuelHeader"]["ArrivalFuel"]["EstimatedWeight"]["Value"]["#text"]
+		thisdict["arrivalfuel_unit"] = data_dict["FlightPlan"]["FuelHeader"]["ArrivalFuel"]["EstimatedWeight"]["Value"]["@unit"]
 		
 		#You display this fuel minus the trip fuel and then divid it by 1000 so that we get the value of one kg
 		thisdict["deltazfw"] =None
 
-		thisdict["ofp_dow"] = ' '.join((data_dict["FlightPlan"]["WeightHeader"]["DryOperatingWeight"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["WeightHeader"]["DryOperatingWeight"]["EstimatedWeight"]["Value"]["@unit"]))
+		thisdict["ofp_dow"] = data_dict["FlightPlan"]["WeightHeader"]["DryOperatingWeight"]["EstimatedWeight"]["Value"]["#text"]
+		thisdict["ofp_dow_unit"] = data_dict["FlightPlan"]["WeightHeader"]["DryOperatingWeight"]["EstimatedWeight"]["Value"]["@unit"]
 		
 		
-		thisdict["payload"] = ' '.join((data_dict["FlightPlan"]["WeightHeader"]["Load"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["WeightHeader"]["Load"]["EstimatedWeight"]["Value"]["@unit"]))	
-		thisdict["ofp_ezfw"] = ' '.join((data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["EstimatedWeight"]["Value"]["#text"],
-		data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["EstimatedWeight"]["Value"]["@unit"]))
+		thisdict["payload"] = data_dict["FlightPlan"]["WeightHeader"]["Load"]["EstimatedWeight"]["Value"]["#text"]
+		thisdict["payload_unit"] = data_dict["FlightPlan"]["WeightHeader"]["Load"]["EstimatedWeight"]["Value"]["@unit"]
+		thisdict["ofp_ezfw"] = data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["EstimatedWeight"]["Value"]["#text"]
+		#data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["EstimatedWeight"]["Value"]["@unit"]
 		
-		thisdict["ofp_dyn_tow"] = ' '.join((data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["OperationalLimit"]["Value"]["#text"],
-		data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["OperationalLimit"]["Value"]["@unit"]))
+		thisdict["ofp_dyn_tow"] = data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["OperationalLimit"]["Value"]["#text"]
+		#data_dict["FlightPlan"]["WeightHeader"]["ZeroFuelWeight"]["OperationalLimit"]["Value"]["@unit"]
 		
-		thisdict["ofp_dyn_ldw"] =' '.join((data_dict["FlightPlan"]["WeightHeader"]["LandingWeight"]["OperationalLimit"]["Value"]["#text"],
-		 data_dict["FlightPlan"]["WeightHeader"]["LandingWeight"]["OperationalLimit"]["Value"]["@unit"]))
+		thisdict["ofp_dyn_ldw"] = data_dict["FlightPlan"]["WeightHeader"]["LandingWeight"]["OperationalLimit"]["Value"]["#text"]
+		#data_dict["FlightPlan"]["WeightHeader"]["LandingWeight"]["OperationalLimit"]["Value"]["@unit"]  
 		
 
 		#data_dict[""][""][""][""][""][""]

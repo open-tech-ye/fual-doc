@@ -20,32 +20,46 @@
   "reg",
   "type",
   "std",
+  "std_date",
+  "std_time",
   "flightplansummary_section",
   "sta",
+  "sta_date",
+  "sta_time",
   "blk",
+  "blk_time",
   "flightplanheader_section",
   "ofp_perffactor",
   "ofp_trip_ff",
   "ofp_hold_ff",
+  "ofp_hold_ff_unit",
   "ofp_ci",
   "fuelheader_section",
   "ofp_trip_time",
   "ofp_trip_fuel",
+  "ofp_trip_fuel_unit",
   "ofp_cont_time",
   "extrafuel",
   "tankering",
   "maximumfuelweight",
+  "maximumfuelweight_unit",
   "takeofffuel",
+  "takeofffuel_unit",
   "takeofffuel_t",
   "taxifuel",
+  "taxifuel_unit",
   "taxitime",
   "blockfuel",
+  "blockfuel_unit",
   "blockfueltime",
   "arrivalfuel",
+  "arrivalfuel_unit",
   "deltazfw",
   "weightheader_section",
   "ofp_dow",
+  "ofp_dow_unit",
   "payload",
+  "payload_unit",
   "ofp_ezfw",
   "ofp_dyn_tow",
   "ofp_dyn_ldw",
@@ -317,11 +331,81 @@
    "fieldname": "altn1_icao",
    "fieldtype": "Data",
    "label": "Altn1 ICAO"
+  },
+  {
+   "fieldname": "ofp_hold_ff_unit",
+   "fieldtype": "Data",
+   "label": "OFP HOLD FF Unit"
+  },
+  {
+   "fieldname": "ofp_trip_fuel_unit",
+   "fieldtype": "Data",
+   "label": "OFP Trip Fuel Unit"
+  },
+  {
+   "fieldname": "maximumfuelweight_unit",
+   "fieldtype": "Data",
+   "label": "MaximumFuelWeight_unit"
+  },
+  {
+   "fieldname": "takeofffuel_unit",
+   "fieldtype": "Data",
+   "label": "TakeOffFuel_unit"
+  },
+  {
+   "fieldname": "taxifuel_unit",
+   "fieldtype": "Data",
+   "label": "taxifuel_unit"
+  },
+  {
+   "fieldname": "blockfuel_unit",
+   "fieldtype": "Data",
+   "label": "blockfuel_unit"
+  },
+  {
+   "fieldname": "arrivalfuel_unit",
+   "fieldtype": "Data",
+   "label": "ArrivalFuel_unit"
+  },
+  {
+   "fieldname": "ofp_dow_unit",
+   "fieldtype": "Data",
+   "label": "ofp_dow_unit"
+  },
+  {
+   "fieldname": "payload_unit",
+   "fieldtype": "Data",
+   "label": "payload_unit"
+  },
+  {
+   "fieldname": "std_date",
+   "fieldtype": "Date",
+   "label": "STD_date"
+  },
+  {
+   "fieldname": "std_time",
+   "fieldtype": "Time",
+   "label": "STD_time"
+  },
+  {
+   "fieldname": "sta_date",
+   "fieldtype": "Date",
+   "label": "STA_date"
+  },
+  {
+   "fieldname": "sta_time",
+   "fieldtype": "Time",
+   "label": "STA_time"
+  },
+  {
+   "fieldname": "blk_time",
+   "fieldtype": "Time",
+   "label": "BLK Time"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-10-28 01:27:00.325825",
+ "modified": "2022-11-26 21:59:01.360487",
  "modified_by": "Administrator",
  "module": "Fual Doc",
  "name": "OFP",
